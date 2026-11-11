@@ -948,12 +948,12 @@ renderPlannedTraining();renderSchedule();
      const found=await downloadRemote();
      if(found){
        ready=true;
-       gate.style.display='none';
-       say('☁ Cloud verbunden','ok');
-       // Rebuild every dashboard module from the downloaded values.
-       location.reload();
-       return;
-     }
+if(sessionStorage.getItem('papaBalouCloudReloaded')!=='1'){
+  sessionStorage.setItem('papaBalouCloudReloaded','1');
+  location.reload();
+  return;
+}
+sessionStorage.removeItem('papaBalouCloudReloaded');
      // First device: keep its existing browser data and seed the cloud.
      ready=true;
      gate.style.display='none';
